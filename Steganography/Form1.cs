@@ -59,5 +59,25 @@ namespace Steganography
             lblDecodeFilePath.Text = fileProperties.Item1;
             tbxHiddenMessage.Text = fileProperties.Item2;
         }
+
+        private void TextBoxEncodeClicked(object sender, EventArgs e)
+        {
+            tbxTextToEncode.Text = "";
+        }
+
+        private void TextBoxEncodeFocusLeft(object sender, EventArgs e)
+        {
+            tbxTextToEncode.Text = "Enter your text here...";
+        }
+
+        private void TextBoxDecodeClicked(object sender, EventArgs e)
+        {
+            tbxHiddenMessage.Text = "";
+        }
+
+        private void TextBoxDecodeFocusLeft(object sender, EventArgs e)
+        {
+            tbxHiddenMessage.Text = "Enter your text here...";
+        }
     }
 }

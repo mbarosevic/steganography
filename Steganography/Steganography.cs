@@ -13,11 +13,11 @@ namespace Steganography
 
         }
 
-        public void encode() { 
+        public void Encode() { 
         
         }
 
-        public void decode()
+        public void Decode()
         {
 
         }

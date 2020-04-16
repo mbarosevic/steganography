@@ -32,13 +32,13 @@
             this.lblEncodeFilePath = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.gbxEncode = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnEncode = new System.Windows.Forms.Button();
+            this.tbxTextToEncode = new System.Windows.Forms.TextBox();
             this.gbxDecode = new System.Windows.Forms.GroupBox();
+            this.btnDecode = new System.Windows.Forms.Button();
             this.tbxHiddenMessage = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.lblDecodeFilePath = new System.Windows.Forms.Label();
-            this.btnDecode = new System.Windows.Forms.Button();
-            this.btnEncode = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSelectedImage)).BeginInit();
             this.gbxEncode.SuspendLayout();
             this.gbxDecode.SuspendLayout();
@@ -75,7 +75,7 @@
             // gbxEncode
             // 
             this.gbxEncode.Controls.Add(this.btnEncode);
-            this.gbxEncode.Controls.Add(this.textBox1);
+            this.gbxEncode.Controls.Add(this.tbxTextToEncode);
             this.gbxEncode.Controls.Add(this.btnBrowse);
             this.gbxEncode.Controls.Add(this.lblEncodeFilePath);
             this.gbxEncode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -86,16 +86,27 @@
             this.gbxEncode.TabStop = false;
             this.gbxEncode.Text = "Encode";
             // 
-            // textBox1
+            // btnEncode
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.textBox1.Location = new System.Drawing.Point(9, 77);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(261, 53);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Enter your text here...";
+            this.btnEncode.Location = new System.Drawing.Point(195, 24);
+            this.btnEncode.Name = "btnEncode";
+            this.btnEncode.Size = new System.Drawing.Size(75, 23);
+            this.btnEncode.TabIndex = 6;
+            this.btnEncode.Text = "Encode";
+            this.btnEncode.UseVisualStyleBackColor = true;
+            // 
+            // tbxTextToEncode
+            // 
+            this.tbxTextToEncode.BackColor = System.Drawing.SystemColors.Window;
+            this.tbxTextToEncode.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tbxTextToEncode.Location = new System.Drawing.Point(9, 77);
+            this.tbxTextToEncode.Multiline = true;
+            this.tbxTextToEncode.Name = "tbxTextToEncode";
+            this.tbxTextToEncode.Size = new System.Drawing.Size(261, 53);
+            this.tbxTextToEncode.TabIndex = 4;
+            this.tbxTextToEncode.Text = "Enter your text here...";
+            this.tbxTextToEncode.Click += new System.EventHandler(this.TextBoxEncodeClicked);
+            this.tbxTextToEncode.Leave += new System.EventHandler(this.TextBoxEncodeFocusLeft);
             // 
             // gbxDecode
             // 
@@ -111,16 +122,28 @@
             this.gbxDecode.TabStop = false;
             this.gbxDecode.Text = "Decode";
             // 
+            // btnDecode
+            // 
+            this.btnDecode.Location = new System.Drawing.Point(194, 24);
+            this.btnDecode.Name = "btnDecode";
+            this.btnDecode.Size = new System.Drawing.Size(75, 23);
+            this.btnDecode.TabIndex = 5;
+            this.btnDecode.Text = "Decode";
+            this.btnDecode.UseVisualStyleBackColor = true;
+            // 
             // tbxHiddenMessage
             // 
             this.tbxHiddenMessage.BackColor = System.Drawing.SystemColors.Window;
-            this.tbxHiddenMessage.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.tbxHiddenMessage.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tbxHiddenMessage.Location = new System.Drawing.Point(9, 77);
             this.tbxHiddenMessage.Multiline = true;
             this.tbxHiddenMessage.Name = "tbxHiddenMessage";
             this.tbxHiddenMessage.Size = new System.Drawing.Size(261, 53);
             this.tbxHiddenMessage.TabIndex = 4;
             this.tbxHiddenMessage.Text = "Hidden message...";
+            this.tbxHiddenMessage.Click += new System.EventHandler(this.TextBoxDecodeClicked);
+            this.tbxHiddenMessage.TextChanged += new System.EventHandler(this.TextBoxDecodeClicked);
+            this.tbxHiddenMessage.Leave += new System.EventHandler(this.TextBoxDecodeFocusLeft);
             // 
             // button1
             // 
@@ -141,24 +164,6 @@
             this.lblDecodeFilePath.Size = new System.Drawing.Size(86, 13);
             this.lblDecodeFilePath.TabIndex = 1;
             this.lblDecodeFilePath.Text = "No file selected";
-            // 
-            // btnDecode
-            // 
-            this.btnDecode.Location = new System.Drawing.Point(194, 24);
-            this.btnDecode.Name = "btnDecode";
-            this.btnDecode.Size = new System.Drawing.Size(75, 23);
-            this.btnDecode.TabIndex = 5;
-            this.btnDecode.Text = "Decode";
-            this.btnDecode.UseVisualStyleBackColor = true;
-            // 
-            // btnEncode
-            // 
-            this.btnEncode.Location = new System.Drawing.Point(195, 24);
-            this.btnEncode.Name = "btnEncode";
-            this.btnEncode.Size = new System.Drawing.Size(75, 23);
-            this.btnEncode.TabIndex = 6;
-            this.btnEncode.Text = "Encode";
-            this.btnEncode.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -187,7 +192,7 @@
         private System.Windows.Forms.Label lblEncodeFilePath;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.GroupBox gbxEncode;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbxTextToEncode;
         private System.Windows.Forms.GroupBox gbxDecode;
         private System.Windows.Forms.TextBox tbxHiddenMessage;
         private System.Windows.Forms.Button button1;
