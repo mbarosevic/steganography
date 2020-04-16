@@ -18,46 +18,36 @@ namespace Steganography
             InitializeComponent();
         }
 
-        public Tuple<string, string> OpenFileDialog()
+        private string FilePath { get; set; }
+
+        public string OpenFileDialog()
         {
             var filePath = string.Empty;
-            var fileContent = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-
-                    //Read the contents of the file into a stream
-                    var fileStream = openFileDialog.OpenFile();
-
-                    using (StreamReader reader = new StreamReader(fileStream))
-                    {
-                        fileContent = reader.ReadToEnd();
-                    }
+                    FilePath = openFileDialog.FileName;
                 }
             }
-            return Tuple.Create(filePath, fileContent);
+            return FilePath;
         }
 
         private void EncodeBrowseBtnClick(object sender, EventArgs e)
         {
-            var fileProperties = OpenFileDialog();
-            lblEncodeFilePath.Text = fileProperties.Item1;
+            lblEncodeFilePath.Text = OpenFileDialog();
         }
 
         private void DecodeBrowseBtnClick(object sender, EventArgs e)
         {
-            var fileProperties = OpenFileDialog();
-            lblDecodeFilePath.Text = fileProperties.Item1;
-            tbxHiddenMessage.Text = fileProperties.Item2;
+            lblDecodeFilePath.Text = OpenFileDialog();
         }
 
         private void TextBoxEncodeClicked(object sender, EventArgs e)
@@ -78,6 +68,35 @@ namespace Steganography
         private void TextBoxDecodeFocusLeft(object sender, EventArgs e)
         {
             tbxHiddenMessage.Text = "Enter your text here...";
+        }
+
+        private void EncodeBtnClick(object sender, EventArgs e)
+        {
+            if (!ImageLoaded())
+            {
+                MessageBox.Show("Picture not selected!", "Error");
+            }
+            Steganography stn = new Steganography();
+        }
+
+        private void DecodeBtnClick(object sender, EventArgs e)
+        {
+            if (!ImageLoaded())
+            {
+                MessageBox.Show("Picture not selected!", "Error");
+            }
+            Steganography stn = new Steganography();
+        }
+
+        public bool ImageLoaded()
+        {
+            if(FilePath == null)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
         }
     }
 }
