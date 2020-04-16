@@ -35,9 +35,15 @@ namespace Steganography
                 {
                     //Get the path of specified file
                     FilePath = openFileDialog.FileName;
+                    LoadImage();
                 }
             }
             return FilePath;
+        }
+
+        private void LoadImage()
+        {
+            pbxImage.ImageLocation = FilePath;
         }
 
         private void EncodeBrowseBtnClick(object sender, EventArgs e)

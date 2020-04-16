@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pbxSelectedImage = new System.Windows.Forms.PictureBox();
+            this.pbxImage = new System.Windows.Forms.PictureBox();
             this.lblEncodeFilePath = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.gbxEncode = new System.Windows.Forms.GroupBox();
@@ -39,18 +39,19 @@
             this.tbxHiddenMessage = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.lblDecodeFilePath = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSelectedImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.gbxEncode.SuspendLayout();
             this.gbxDecode.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pbxSelectedImage
+            // pbxImage
             // 
-            this.pbxSelectedImage.Location = new System.Drawing.Point(378, 23);
-            this.pbxSelectedImage.Name = "pbxSelectedImage";
-            this.pbxSelectedImage.Size = new System.Drawing.Size(489, 437);
-            this.pbxSelectedImage.TabIndex = 0;
-            this.pbxSelectedImage.TabStop = false;
+            this.pbxImage.Location = new System.Drawing.Point(378, 23);
+            this.pbxImage.Name = "pbxImage";
+            this.pbxImage.Size = new System.Drawing.Size(489, 437);
+            this.pbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxImage.TabIndex = 0;
+            this.pbxImage.TabStop = false;
             // 
             // lblEncodeFilePath
             // 
@@ -178,12 +179,12 @@
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(879, 481);
             this.Controls.Add(this.gbxDecode);
-            this.Controls.Add(this.pbxSelectedImage);
+            this.Controls.Add(this.pbxImage);
             this.Controls.Add(this.gbxEncode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pbxSelectedImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.gbxEncode.ResumeLayout(false);
             this.gbxEncode.PerformLayout();
             this.gbxDecode.ResumeLayout(false);
@@ -194,7 +195,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pbxSelectedImage;
+        private System.Windows.Forms.PictureBox pbxImage;
         private System.Windows.Forms.Label lblEncodeFilePath;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.GroupBox gbxEncode;
