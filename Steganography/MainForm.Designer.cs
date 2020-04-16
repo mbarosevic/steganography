@@ -1,6 +1,6 @@
 ﻿namespace Steganography
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -172,7 +172,7 @@
             this.lblDecodeFilePath.TabIndex = 1;
             this.lblDecodeFilePath.Text = "No file selected";
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -182,8 +182,8 @@
             this.Controls.Add(this.pbxImage);
             this.Controls.Add(this.gbxEncode);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "MainForm";
+            this.Text = "Steganography tool";
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.gbxEncode.ResumeLayout(false);
             this.gbxEncode.PerformLayout();
