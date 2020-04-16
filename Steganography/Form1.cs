@@ -18,8 +18,6 @@ namespace Steganography
             InitializeComponent();
         }
 
-
-
         public Tuple<string, string> OpenFileDialog()
         {
             var filePath = string.Empty;
