@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Steganography
@@ -10,12 +11,12 @@ namespace Steganography
             InitializeComponent();
         }
 
-        private string FilePath { get; set; }
+        public string FilePath { get; set; }
+        public double TextSizeToFit { get; set; }
+        public  Image LoadedImage { get; set; }
 
         public string OpenFileDialog()
         {
-            var filePath = string.Empty;
-
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
@@ -35,6 +36,8 @@ namespace Steganography
 
         private void LoadImage()
         {
+            LoadedImage = Image.FromFile(FilePath);
+            TextSizeToFit = (8.0 * ((LoadedImage.Height * (LoadedImage.Width / 3) * 3) / 3 - 1)) / 1024;
             pbxImage.ImageLocation = FilePath;
         }
 
@@ -83,12 +86,23 @@ namespace Steganography
             {
                 MessageBox.Show("Picture not selected!", "Error");
             }
-            Steganography stn = new Steganography();
         }
 
         public bool ImageLoaded()
         {
             if(FilePath == null)
+            {
+                return false;
+            } else
+            {
+                return true;
+            }
+        }
+
+        public bool CheckTextLength(string text)
+        {
+            double textToCheck = (System.Text.Encoding.ASCII.GetByteCount(text)) / 1024;
+            if(TextSizeToFit < textToCheck)
             {
                 return false;
             } else
