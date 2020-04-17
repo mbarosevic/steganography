@@ -159,9 +159,6 @@
             this.tbxHiddenMessage.Size = new System.Drawing.Size(435, 132);
             this.tbxHiddenMessage.TabIndex = 4;
             this.tbxHiddenMessage.Text = "Hidden message...";
-            this.tbxHiddenMessage.Click += new System.EventHandler(this.TextBoxDecodeClicked);
-            this.tbxHiddenMessage.TextChanged += new System.EventHandler(this.TextBoxDecodeClicked);
-            this.tbxHiddenMessage.Leave += new System.EventHandler(this.TextBoxDecodeFocusLeft);
             // 
             // button1
             // 

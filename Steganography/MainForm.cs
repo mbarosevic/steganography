@@ -62,16 +62,6 @@ namespace Steganography
             tbxTextToEncode.Text = "Enter your text here...";
         }
 
-        private void TextBoxDecodeClicked(object sender, EventArgs e)
-        {
-            tbxHiddenMessage.Text = "";
-        }
-
-        private void TextBoxDecodeFocusLeft(object sender, EventArgs e)
-        {
-            tbxHiddenMessage.Text = "Enter your text here...";
-        }
-
         private void EncodeBtnClick(object sender, EventArgs e)
         {
             TextToEncode = tbxTextToEncode.Text;
