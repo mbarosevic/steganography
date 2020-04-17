@@ -12,6 +12,7 @@ namespace Steganography
         }
 
         public string FilePath { get; set; }
+        public string TextToEncode { get; set; }
         public double TextSizeToFit { get; set; }
         public  Image LoadedImage { get; set; }
 
@@ -73,11 +74,24 @@ namespace Steganography
 
         private void EncodeBtnClick(object sender, EventArgs e)
         {
-            if (!ImageLoaded())
+            TextToEncode = tbxTextToEncode.Text;
+
+            if(TextToEncode.Length != 0)
             {
-                MessageBox.Show("Picture not selected!", "Error");
+                if(CheckTextLength(TextToEncode) && ImageLoaded())
+                {
+                    /*
+                    Steganography stg = new Steganography();
+                    stg.Encode();
+                    */
+                } else
+                {
+                    MessageBox.Show("Please check the image source or text length!", "Error");
+                }
+            } else
+            {
+                MessageBox.Show("Please enter the text you want to encode!", "Error");
             }
-            Steganography stn = new Steganography();
         }
 
         private void DecodeBtnClick(object sender, EventArgs e)
