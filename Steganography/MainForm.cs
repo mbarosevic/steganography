@@ -35,7 +35,7 @@ namespace Steganography
             return _filePath;
         }
 
-        public bool SaveImage(Bitmap encodedImage)
+        public void SaveImage(Bitmap encodedImage)
         {
             SaveFileDialog saveImage = new SaveFileDialog();
             saveImage.InitialDirectory = "c:\\";
@@ -43,13 +43,24 @@ namespace Steganography
             saveImage.FilterIndex = 2;
             saveImage.RestoreDirectory = true;
 
+            /*
+            if(saveImage.FileName != "")
+            {
+                using (System.IO.FileStream fs = (System.IO.FileStream)saveImage.OpenFile())
+                {
+                    encodedImage.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+            }
+            */
+            string filePath;
             if(saveImage.ShowDialog() == DialogResult.OK)
             {
-                //save image
-                return true;
+                filePath = saveImage.FileName.ToString();
+                encodedImage.Save(filePath);
+                MessageBox.Show("SAVED");
             } else
             {
-                return false;
+                MessageBox.Show("NOT SAVED");
             }
         }
 
@@ -77,7 +88,7 @@ namespace Steganography
 
         private void TextBoxEncodeFocusLeft(object sender, EventArgs e)
         {
-            tbxTextToEncode.Text = "Enter your text here...";
+            //tbxTextToEncode.Text = "Enter your text here...";
         }
 
         private void EncodeBtnClick(object sender, EventArgs e)
@@ -94,6 +105,7 @@ namespace Steganography
                     //return value of Encode method should be Bitmap
                     Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
                     //SaveFileDialog
+                    SaveImage(bitmapWEncodedText);
                 } else
                 {
                     MessageBox.Show("Please check the image source or text length!", "Error");

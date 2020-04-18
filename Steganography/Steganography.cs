@@ -19,17 +19,19 @@ namespace Steganography
                     if (i < 1 && j < textToEncode.Length)
                     {
                         //TEST
-                        //Console.WriteLine("R= [" + i + "][" + j + "]=" + pixel.R);
-                        //Console.WriteLine("G= [" + i + "][" + j + "]=" + pixel.G);
-                        //Console.WriteLine("B= [" + i + "][" + j + "]=" + pixel.B);
+                        Console.WriteLine("R= [" + i + "][" + j + "]=" + pixel.R);
+                        Console.WriteLine("G= [" + i + "][" + j + "]=" + pixel.G);
+                        Console.WriteLine("B= [" + i + "][" + j + "]=" + pixel.B);
                         char letter = Convert.ToChar(textToEncode.Substring(j, 1));
                         int value = Convert.ToInt32(letter);
-                        //Console.WriteLine("letter :" + letter + " value :" + value);
+                        Console.WriteLine("letter :" + letter + " value :" + value);
                         bitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, value));
                     }
                     if (i == bitmap.Width - 1 && j == bitmap.Height - 1)
                     {
-                        bitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
+                        //bitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
+                        
+                        bitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, pixel.B));
                     }
                 }
             }
