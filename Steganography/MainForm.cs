@@ -16,7 +16,7 @@ namespace Steganography
         private double _textSizeToFit;
         private Image _loadedImage;
 
-        public string OpenFileDialog()
+        public string OpenImage()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -35,6 +35,24 @@ namespace Steganography
             return _filePath;
         }
 
+        public bool SaveImage(Bitmap encodedImage)
+        {
+            SaveFileDialog saveImage = new SaveFileDialog();
+            saveImage.InitialDirectory = "c:\\";
+            saveImage.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            saveImage.FilterIndex = 2;
+            saveImage.RestoreDirectory = true;
+
+            if(saveImage.ShowDialog() == DialogResult.OK)
+            {
+                //save image
+                return true;
+            } else
+            {
+                return false;
+            }
+        }
+
         private void LoadImage()
         {
             _loadedImage = Image.FromFile(_filePath);
@@ -44,12 +62,12 @@ namespace Steganography
 
         private void EncodeBrowseBtnClick(object sender, EventArgs e)
         {
-            lblEncodeFilePath.Text = OpenFileDialog();
+            lblEncodeFilePath.Text = OpenImage();
         }
 
         private void DecodeBrowseBtnClick(object sender, EventArgs e)
         {
-            lblDecodeFilePath.Text = OpenFileDialog();
+            lblDecodeFilePath.Text = OpenImage();
         }
 
         private void TextBoxEncodeClicked(object sender, EventArgs e)
@@ -70,10 +88,12 @@ namespace Steganography
             {
                 if(CheckTextLength(_textToEncode) && ImageLoaded())
                 {
-                    /*
                     Steganography stg = new Steganography();
-                    stg.Encode();
-                    */
+                    Bitmap bitmapWOEncodedText = new Bitmap(_filePath);
+
+                    //return value of Encode method should be Bitmap
+                    Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
+                    //SaveFileDialog
                 } else
                 {
                     MessageBox.Show("Please check the image source or text length!", "Error");
