@@ -11,10 +11,10 @@ namespace Steganography
             InitializeComponent();
         }
 
-        public string FilePath { get; set; }
-        public string TextToEncode { get; set; }
-        public double TextSizeToFit { get; set; }
-        public  Image LoadedImage { get; set; }
+        private string _filePath;
+        private string _textToEncode;
+        private double _textSizeToFit;
+        private Image _loadedImage;
 
         public string OpenFileDialog()
         {
@@ -28,18 +28,18 @@ namespace Steganography
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     //Get the path of specified file
-                    FilePath = openFileDialog.FileName;
+                    _filePath = openFileDialog.FileName;
                     LoadImage();
                 }
             }
-            return FilePath;
+            return _filePath;
         }
 
         private void LoadImage()
         {
-            LoadedImage = Image.FromFile(FilePath);
-            TextSizeToFit = (8.0 * ((LoadedImage.Height * (LoadedImage.Width / 3) * 3) / 3 - 1)) / 1024;
-            pbxImage.ImageLocation = FilePath;
+            _loadedImage = Image.FromFile(_filePath);
+            _textSizeToFit = (8.0 * ((_loadedImage.Height * (_loadedImage.Width / 3) * 3) / 3 - 1)) / 1024;
+            pbxImage.ImageLocation = _filePath;
         }
 
         private void EncodeBrowseBtnClick(object sender, EventArgs e)
@@ -64,11 +64,11 @@ namespace Steganography
 
         private void EncodeBtnClick(object sender, EventArgs e)
         {
-            TextToEncode = tbxTextToEncode.Text;
+            _textToEncode = tbxTextToEncode.Text;
 
-            if(TextToEncode.Length != 0)
+            if(_textToEncode.Length != 0)
             {
-                if(CheckTextLength(TextToEncode) && ImageLoaded())
+                if(CheckTextLength(_textToEncode) && ImageLoaded())
                 {
                     /*
                     Steganography stg = new Steganography();
@@ -94,7 +94,7 @@ namespace Steganography
 
         public bool ImageLoaded()
         {
-            if(FilePath == null)
+            if(_filePath == null)
             {
                 return false;
             } else
@@ -106,7 +106,7 @@ namespace Steganography
         public bool CheckTextLength(string text)
         {
             double textToCheck = (System.Text.Encoding.ASCII.GetByteCount(text)) / 1024;
-            if(TextSizeToFit < textToCheck)
+            if(_textSizeToFit < textToCheck)
             {
                 return false;
             } else
