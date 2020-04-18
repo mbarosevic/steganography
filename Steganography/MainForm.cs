@@ -57,10 +57,10 @@ namespace Steganography
             {
                 filePath = saveImage.FileName.ToString();
                 encodedImage.Save(filePath);
-                MessageBox.Show("SAVED");
+                MessageBox.Show("Encoded image successfully saved!", "OK");
             } else
             {
-                MessageBox.Show("NOT SAVED");
+                MessageBox.Show("Saving failed!", "Error");
             }
         }
 
