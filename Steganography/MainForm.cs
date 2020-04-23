@@ -136,7 +136,10 @@ namespace Steganography
                 MessageBox.Show("Please select an image file!", "Error");
             } else
             {
+                Steganography stg = new Steganography();
+                Bitmap bitmapToDecode = new Bitmap(_filePath);
                 //Decode
+                Console.WriteLine(stg.Decode(bitmapToDecode));
             }
         }
     }
