@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.pbxImage = new System.Windows.Forms.PictureBox();
             this.lblEncodeFilePath = new System.Windows.Forms.Label();
-            this.btnEncode = new System.Windows.Forms.Button();
             this.tbxTextToEncode = new System.Windows.Forms.TextBox();
             this.metroSetControlBox1 = new MetroSet_UI.Controls.MetroSetControlBox();
             this.lblDecodeFilePath = new System.Windows.Forms.Label();
@@ -43,13 +42,15 @@
             this.metroSetDivider2 = new MetroSet_UI.Controls.MetroSetDivider();
             this.metroSetLabel2 = new MetroSet_UI.Controls.MetroSetLabel();
             this.btnBrowse = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnEncode = new MaterialSkin.Controls.MaterialFlatButton();
+            this.metroSetLabel3 = new MetroSet_UI.Controls.MetroSetLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.SuspendLayout();
             // 
             // pbxImage
             // 
             this.pbxImage.BackColor = System.Drawing.Color.White;
-            this.pbxImage.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbxImage.BackgroundImage")));
+            this.pbxImage.Image = ((System.Drawing.Image)(resources.GetObject("pbxImage.Image")));
             this.pbxImage.Location = new System.Drawing.Point(378, 79);
             this.pbxImage.Name = "pbxImage";
             this.pbxImage.Size = new System.Drawing.Size(504, 464);
@@ -60,6 +61,7 @@
             // lblEncodeFilePath
             // 
             this.lblEncodeFilePath.AutoSize = true;
+            this.lblEncodeFilePath.BackColor = System.Drawing.Color.Transparent;
             this.lblEncodeFilePath.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncodeFilePath.Location = new System.Drawing.Point(9, 191);
             this.lblEncodeFilePath.Name = "lblEncodeFilePath";
@@ -67,29 +69,18 @@
             this.lblEncodeFilePath.TabIndex = 1;
             this.lblEncodeFilePath.Text = "No file selected";
             // 
-            // btnEncode
-            // 
-            this.btnEncode.Font = new System.Drawing.Font("Segoe UI Semilight", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEncode.Location = new System.Drawing.Point(223, 140);
-            this.btnEncode.Name = "btnEncode";
-            this.btnEncode.Size = new System.Drawing.Size(84, 30);
-            this.btnEncode.TabIndex = 6;
-            this.btnEncode.Text = "Encode";
-            this.btnEncode.UseVisualStyleBackColor = true;
-            this.btnEncode.Click += new System.EventHandler(this.EncodeBtnClick);
-            // 
             // tbxTextToEncode
             // 
             this.tbxTextToEncode.BackColor = System.Drawing.SystemColors.Window;
+            this.tbxTextToEncode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxTextToEncode.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tbxTextToEncode.Location = new System.Drawing.Point(12, 220);
+            this.tbxTextToEncode.Location = new System.Drawing.Point(12, 218);
             this.tbxTextToEncode.Multiline = true;
             this.tbxTextToEncode.Name = "tbxTextToEncode";
-            this.tbxTextToEncode.Size = new System.Drawing.Size(327, 108);
+            this.tbxTextToEncode.Size = new System.Drawing.Size(344, 91);
             this.tbxTextToEncode.TabIndex = 4;
             this.tbxTextToEncode.Text = "Enter your text here...";
             this.tbxTextToEncode.Click += new System.EventHandler(this.TextBoxEncodeClicked);
-            this.tbxTextToEncode.Leave += new System.EventHandler(this.TextBoxEncodeFocusLeft);
             // 
             // metroSetControlBox1
             // 
@@ -162,7 +153,7 @@
             // 
             this.button1.AutoSize = true;
             this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button1.BackColor = System.Drawing.Color.Maroon;
+            this.button1.BackColor = System.Drawing.Color.Gray;
             this.button1.Depth = 0;
             this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -177,6 +168,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Browse";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.DecodeBrowseBtnClicked);
             // 
             // metroSetLabel1
             // 
@@ -250,6 +242,38 @@
             this.btnBrowse.TabIndex = 14;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.EncodeBrowseBtnClicked);
+            // 
+            // btnEncode
+            // 
+            this.btnEncode.AutoSize = true;
+            this.btnEncode.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEncode.Depth = 0;
+            this.btnEncode.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnEncode.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEncode.Icon = null;
+            this.btnEncode.Location = new System.Drawing.Point(283, 137);
+            this.btnEncode.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnEncode.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnEncode.Name = "btnEncode";
+            this.btnEncode.Primary = false;
+            this.btnEncode.Size = new System.Drawing.Size(74, 36);
+            this.btnEncode.TabIndex = 15;
+            this.btnEncode.Text = "Encode";
+            this.btnEncode.UseVisualStyleBackColor = true;
+            // 
+            // metroSetLabel3
+            // 
+            this.metroSetLabel3.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metroSetLabel3.Location = new System.Drawing.Point(15, 36);
+            this.metroSetLabel3.Name = "metroSetLabel3";
+            this.metroSetLabel3.Size = new System.Drawing.Size(281, 46);
+            this.metroSetLabel3.Style = MetroSet_UI.Design.Style.Light;
+            this.metroSetLabel3.StyleManager = null;
+            this.metroSetLabel3.TabIndex = 16;
+            this.metroSetLabel3.Text = "Steganography tool";
+            this.metroSetLabel3.ThemeAuthor = "Narwin";
+            this.metroSetLabel3.ThemeName = "MetroLite";
             // 
             // MainForm
             // 
@@ -257,12 +281,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(891, 558);
+            this.ClientSize = new System.Drawing.Size(891, 554);
+            this.Controls.Add(this.metroSetLabel3);
+            this.Controls.Add(this.btnEncode);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.metroSetLabel2);
             this.Controls.Add(this.metroSetDivider2);
             this.Controls.Add(this.lblEncodeFilePath);
-            this.Controls.Add(this.btnEncode);
             this.Controls.Add(this.metroSetDivider1);
             this.Controls.Add(this.tbxTextToEncode);
             this.Controls.Add(this.metroSetLabel1);
@@ -287,7 +312,6 @@
         private System.Windows.Forms.PictureBox pbxImage;
         private System.Windows.Forms.Label lblEncodeFilePath;
         private System.Windows.Forms.TextBox tbxTextToEncode;
-        private System.Windows.Forms.Button btnEncode;
         private MetroSet_UI.Controls.MetroSetControlBox metroSetControlBox1;
         private System.Windows.Forms.Label lblDecodeFilePath;
         private System.Windows.Forms.TextBox tbxHiddenMessage;
@@ -298,6 +322,8 @@
         private MetroSet_UI.Controls.MetroSetDivider metroSetDivider2;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel2;
         private MaterialSkin.Controls.MaterialFlatButton btnBrowse;
+        private MaterialSkin.Controls.MaterialFlatButton btnEncode;
+        private MetroSet_UI.Controls.MetroSetLabel metroSetLabel3;
     }
 }
 

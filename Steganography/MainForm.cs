@@ -72,26 +72,10 @@ namespace Steganography
             pbxImage.ImageLocation = _filePath;
         }
 
-        private void EncodeBrowseBtnClick(object sender, EventArgs e)
-        {
-            lblEncodeFilePath.Text = OpenImage();
-        }
-
-        private void DecodeBrowseBtnClick(object sender, EventArgs e)
-        {
-            lblDecodeFilePath.Text = OpenImage();
-        }
-
         private void TextBoxEncodeClicked(object sender, EventArgs e)
         {
             tbxTextToEncode.Text = "";
         }
-
-        private void TextBoxEncodeFocusLeft(object sender, EventArgs e)
-        {
-            //tbxTextToEncode.Text = "Enter your text here...";
-        }
-
         private void EncodeBtnClick(object sender, EventArgs e)
         {
             _textToEncode = tbxTextToEncode.Text;
@@ -146,6 +130,16 @@ namespace Steganography
             {
                 return true;
             }
+        }
+
+        private void EncodeBrowseBtnClicked(object sender, EventArgs e)
+        {
+            lblEncodeFilePath.Text = OpenImage();
+        }
+
+        private void DecodeBrowseBtnClicked(object sender, EventArgs e)
+        {
+            lblDecodeFilePath.Text = OpenImage();
         }
     }
 }

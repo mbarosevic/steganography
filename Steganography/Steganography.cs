@@ -38,9 +38,9 @@ namespace Steganography
             return bitmap;
         }
 
-        public void Decode()
+        public string Decode()
         {
-
+            return "";
         }
     }
 }
