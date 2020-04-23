@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MetroSet_UI.Forms;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Steganography
 {
-    public partial class MainForm : Form
+    public partial class MainForm : MetroSetForm
     {
         public MainForm()
         {
