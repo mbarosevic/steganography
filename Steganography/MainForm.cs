@@ -44,21 +44,12 @@ namespace Steganography
             saveImage.FilterIndex = 2;
             saveImage.RestoreDirectory = true;
 
-            /*
-            if(saveImage.FileName != "")
-            {
-                using (System.IO.FileStream fs = (System.IO.FileStream)saveImage.OpenFile())
-                {
-                    encodedImage.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
-                }
-            }
-            */
             string filePath;
             if(saveImage.ShowDialog() == DialogResult.OK)
             {
                 filePath = saveImage.FileName.ToString();
                 encodedImage.Save(filePath);
-                MessageBox.Show("Encoded image successfully saved!", "OK");
+                MessageBox.Show("Image successfully saved!", "OK");
             } else
             {
                 MessageBox.Show("Saving failed!", "Error");
@@ -75,38 +66,6 @@ namespace Steganography
         private void TextBoxEncodeClicked(object sender, EventArgs e)
         {
             tbxTextToEncode.Text = "";
-        }
-        private void EncodeBtnClick(object sender, EventArgs e)
-        {
-            _textToEncode = tbxTextToEncode.Text;
-
-            if(_textToEncode.Length != 0)
-            {
-                if(CheckTextLength(_textToEncode) && ImageLoaded())
-                {
-                    Steganography stg = new Steganography();
-                    Bitmap bitmapWOEncodedText = new Bitmap(_filePath);
-
-                    //return value of Encode method should be Bitmap
-                    Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
-                    //SaveFileDialog
-                    SaveImage(bitmapWEncodedText);
-                } else
-                {
-                    MessageBox.Show("Please check the image source or text length!", "Error");
-                }
-            } else
-            {
-                MessageBox.Show("Please enter the text you want to encode!", "Error");
-            }
-        }
-
-        private void DecodeBtnClick(object sender, EventArgs e)
-        {
-            if (!ImageLoaded())
-            {
-                MessageBox.Show("Picture not selected!", "Error");
-            }
         }
 
         public bool ImageLoaded()
@@ -132,14 +91,53 @@ namespace Steganography
             }
         }
 
-        private void EncodeBrowseBtnClicked(object sender, EventArgs e)
+        private void EncodeBrowseBtnClick(object sender, EventArgs e)
         {
             lblEncodeFilePath.Text = OpenImage();
         }
 
-        private void DecodeBrowseBtnClicked(object sender, EventArgs e)
+        private void DecodeBrowseBtnClick(object sender, EventArgs e)
         {
             lblDecodeFilePath.Text = OpenImage();
+        }
+
+        private void EncodeBtnClick(object sender, EventArgs e)
+        {
+            _textToEncode = tbxTextToEncode.Text;
+
+            if (_textToEncode.Length != 0)
+            {
+                if (CheckTextLength(_textToEncode) && ImageLoaded())
+                {
+                    Steganography stg = new Steganography();
+                    Bitmap bitmapWOEncodedText = new Bitmap(_filePath);
+
+                    //return value of Encode method should be Bitmap
+                    Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
+                    //SaveFileDialog
+                    SaveImage(bitmapWEncodedText);
+                }
+                else
+                {
+                    MessageBox.Show("Please check the image source or text length!", "Error");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter the text you want to encode!", "Error");
+            }
+        }
+
+        private void DecodeBtnClick(object sender, EventArgs e)
+        {
+            string pathPlaceholder = "No file selected";
+            if (lblDecodeFilePath.Text == pathPlaceholder || lblDecodeFilePath.Text == "")
+            {
+                MessageBox.Show("Please select an image file!", "Error");
+            } else
+            {
+                //Decode
+            }
         }
     }
 }

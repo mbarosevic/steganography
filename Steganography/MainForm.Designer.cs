@@ -148,6 +148,7 @@
             this.btnDecode.TabIndex = 7;
             this.btnDecode.Text = "Decode";
             this.btnDecode.UseVisualStyleBackColor = true;
+            this.btnDecode.Click += new System.EventHandler(this.DecodeBtnClick);
             // 
             // button1
             // 
@@ -168,7 +169,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "Browse";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.DecodeBrowseBtnClicked);
+            this.button1.Click += new System.EventHandler(this.DecodeBrowseBtnClick);
             // 
             // metroSetLabel1
             // 
@@ -242,7 +243,7 @@
             this.btnBrowse.TabIndex = 14;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
-            this.btnBrowse.Click += new System.EventHandler(this.EncodeBrowseBtnClicked);
+            this.btnBrowse.Click += new System.EventHandler(this.EncodeBrowseBtnClick);
             // 
             // btnEncode
             // 
@@ -261,6 +262,7 @@
             this.btnEncode.TabIndex = 15;
             this.btnEncode.Text = "Encode";
             this.btnEncode.UseVisualStyleBackColor = true;
+            this.btnEncode.Click += new System.EventHandler(this.EncodeBtnClick);
             // 
             // metroSetLabel3
             // 
