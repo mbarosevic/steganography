@@ -138,8 +138,16 @@ namespace Steganography
             {
                 Steganography stg = new Steganography();
                 Bitmap bitmapToDecode = new Bitmap(_filePath);
+
                 //Decode
-                Console.WriteLine(stg.Decode(bitmapToDecode));
+                string hiddenText = stg.Decode(bitmapToDecode);
+                if(hiddenText == string.Empty)
+                {
+                    MessageBox.Show("Selected image does not contain hidden text!", "Error");
+                } else
+                {
+                    tbxHiddenMessage.Text = hiddenText;
+                }
             }
         }
     }
