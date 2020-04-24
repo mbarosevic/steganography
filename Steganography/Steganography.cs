@@ -54,7 +54,27 @@ namespace Steganography
 
         public string Decode(Bitmap bitmap)
         {
-            return "";
+            string hiddenMessage = "";
+            Color lastPixel = bitmap.GetPixel(bitmap.Width - 1, bitmap.Height - 1);
+            int msgLength = lastPixel.B;
+            for (int i = 0; i < bitmap.Width; i++)
+            {
+                for (int j = 0; j < bitmap.Height; j++)
+                {
+                    Color pixel = bitmap.GetPixel(i, j);
+
+                    if (i < 1 && j < msgLength)
+                    {
+                        int value = pixel.B;
+                        char c = Convert.ToChar(value);
+                        String letter = System.Text.Encoding.UTF8.GetString(new byte[] { Convert.ToByte(c) });
+                        //TEST
+                        Console.WriteLine($"letter: {letter}   value {value}");
+                        hiddenMessage = hiddenMessage + letter;
+                    }
+                }
+            }
+            return hiddenMessage;
         }
     }
 }
