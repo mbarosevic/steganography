@@ -31,9 +31,9 @@ namespace Steganography
                     }
                     if (i == nonIndexedBitmap.Width - 1 && j == nonIndexedBitmap.Height - 1)
                     {
-                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
+                        //nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
 
-                        //bitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, pixel.B));
+                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, pixel.B));
                     }
                 }
             }
@@ -67,10 +67,13 @@ namespace Steganography
                     {
                         int value = pixel.B;
                         char c = Convert.ToChar(value);
-                        String letter = System.Text.Encoding.UTF8.GetString(new byte[] { Convert.ToByte(c) });
+                        String letter = System.Text.Encoding.ASCII.GetString(new byte[] { Convert.ToByte(c) });
                         //TEST
                         Console.WriteLine($"letter: {letter}   value {value}");
-                        hiddenMessage = hiddenMessage + letter;
+                        if(letter != "?")
+                        {
+                            hiddenMessage = hiddenMessage + letter;
+                        }
                     }
                 }
             }

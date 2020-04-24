@@ -113,6 +113,10 @@ namespace Steganography
                     Bitmap bitmapWOEncodedText = new Bitmap(_filePath);
 
                     //return value of Encode method should be Bitmap
+                    if(_textToEncode.Length > 255)
+                    {
+                        //MessageBox.Show("Text is too long");
+                    }
                     Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
                     //SaveFileDialog
                     SaveImage(bitmapWEncodedText);
@@ -146,6 +150,7 @@ namespace Steganography
                     MessageBox.Show("Selected image does not contain hidden text!", "Error");
                 } else
                 {
+                    tbxHiddenMessage.Text = "";
                     tbxHiddenMessage.Text = hiddenText;
                 }
             }
