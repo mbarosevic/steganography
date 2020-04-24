@@ -113,13 +113,17 @@ namespace Steganography
                     Bitmap bitmapWOEncodedText = new Bitmap(_filePath);
 
                     //return value of Encode method should be Bitmap
+                    Console.WriteLine("TEXT LENGTH: " + _textToEncode.Length);
+                    Console.WriteLine(_textToEncode);
                     if(_textToEncode.Length > 255)
                     {
-                        //MessageBox.Show("Text is too long");
+                        MessageBox.Show("Text limit is 255 characters!");
+                    } else
+                    {
+                        Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
+                        //SaveFileDialog
+                        SaveImage(bitmapWEncodedText);
                     }
-                    Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
-                    //SaveFileDialog
-                    SaveImage(bitmapWEncodedText);
                 }
                 else
                 {

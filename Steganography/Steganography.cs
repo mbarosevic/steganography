@@ -12,6 +12,7 @@ namespace Steganography
 
         public Bitmap Encode(Bitmap bitmap, string textToEncode)
         {
+            Console.WriteLine(textToEncode);
             Bitmap nonIndexedBitmap = CreateNonIndexedBitmap(bitmap);
             for (int i = 0; i < nonIndexedBitmap.Width; i++)
             {
@@ -21,19 +22,19 @@ namespace Steganography
                     if (i < 1 && j < textToEncode.Length)
                     {
                         //TEST
+                        /*
                         Console.WriteLine("R= [" + i + "][" + j + "]=" + pixel.R);
                         Console.WriteLine("G= [" + i + "][" + j + "]=" + pixel.G);
                         Console.WriteLine("B= [" + i + "][" + j + "]=" + pixel.B);
+                        */
                         char letter = Convert.ToChar(textToEncode.Substring(j, 1));
                         int value = Convert.ToInt32(letter);
-                        Console.WriteLine("letter :" + letter + " value :" + value);
+                        //Console.WriteLine("letter :" + letter + " value :" + value);
                         nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, value));
                     }
                     if (i == nonIndexedBitmap.Width - 1 && j == nonIndexedBitmap.Height - 1)
                     {
-                        //nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
-
-                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, pixel.B));
+                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
                     }
                 }
             }
@@ -69,7 +70,7 @@ namespace Steganography
                         char c = Convert.ToChar(value);
                         String letter = System.Text.Encoding.ASCII.GetString(new byte[] { Convert.ToByte(c) });
                         //TEST
-                        Console.WriteLine($"letter: {letter}   value {value}");
+                        //Console.WriteLine($"letter: {letter}   value {value}");
                         if(letter != "?")
                         {
                             hiddenMessage = hiddenMessage + letter;
@@ -77,6 +78,7 @@ namespace Steganography
                     }
                 }
             }
+            Console.WriteLine(hiddenMessage);
             return hiddenMessage;
         }
     }
