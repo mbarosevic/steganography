@@ -151,6 +151,13 @@ namespace Steganography
                 } else
                 {
                     tbxHiddenMessage.Text = "";
+                    if(hiddenText.Length > 200)
+                    {
+                        tbxHiddenMessage.ScrollBars = ScrollBars.Vertical;
+                    } else
+                    {
+                        tbxHiddenMessage.ScrollBars = ScrollBars.None;
+                    }
                     tbxHiddenMessage.Text = hiddenText;
                 }
             }
