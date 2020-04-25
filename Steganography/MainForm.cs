@@ -1,6 +1,8 @@
 ﻿using MetroSet_UI.Forms;
 using System;
 using System.Drawing;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Steganography
@@ -38,21 +40,24 @@ namespace Steganography
 
         public void SaveImage(Bitmap encodedImage)
         {
-            SaveFileDialog saveImage = new SaveFileDialog();
-            saveImage.InitialDirectory = "c:\\";
-            saveImage.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            saveImage.FilterIndex = 2;
-            saveImage.RestoreDirectory = true;
+            using (SaveFileDialog saveImage = new SaveFileDialog())
+            {
+                saveImage.InitialDirectory = "c:\\";
+                saveImage.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+                saveImage.FilterIndex = 2;
+                saveImage.RestoreDirectory = true;
 
-            string filePath;
-            if(saveImage.ShowDialog() == DialogResult.OK)
-            {
-                filePath = saveImage.FileName.ToString();
-                encodedImage.Save(filePath);
-                MessageBox.Show("Image successfully saved!", "OK");
-            } else
-            {
-                MessageBox.Show("Saving failed!", "Error");
+                string filePath;
+                if (saveImage.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = saveImage.FileName.ToString();
+                    encodedImage.Save(filePath);
+                    MessageBox.Show("Image successfully saved!", "OK");
+                }
+                else
+                {
+                    MessageBox.Show("Saving failed!", "Error");
+                }
             }
         }
 
@@ -104,25 +109,49 @@ namespace Steganography
         private void EncodeBtnClick(object sender, EventArgs e)
         {
             _textToEncode = tbxTextToEncode.Text;
+            if (radioBtnPasswordSecured.Checked)
+            {
+                if(txtFieldPassword.Text != "" || txtFieldPassword.Text.Length > 3)
+                {
+                    string password = txtFieldPassword.Text;
+
+                    using (SHA256 sha256 = SHA256Managed.Create())
+                    {
+                        byte[] key = sha256.ComputeHash(Encoding.ASCII.GetBytes(password));
+                        byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
+                        AesManaged aes = new AesManaged();
+                        _textToEncode = aes.Encrypt(_textToEncode, key, iv);
+                    }
+                    Console.WriteLine(_textToEncode);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter at least 4 characters for password!", "Error");
+                }
+            } 
 
             if (_textToEncode.Length != 0)
             {
                 if (CheckTextLength(_textToEncode) && ImageLoaded())
                 {
                     Steganography stg = new Steganography();
-                    Bitmap bitmapWOEncodedText = new Bitmap(_filePath);
-
-                    //return value of Encode method should be Bitmap
-                    Console.WriteLine("TEXT LENGTH: " + _textToEncode.Length);
-                    Console.WriteLine(_textToEncode);
-                    if(_textToEncode.Length > 255)
+                    using (Bitmap bitmapWOEncodedText = new Bitmap(_filePath))
                     {
-                        MessageBox.Show("Text limit is 255 characters!");
-                    } else
-                    {
-                        Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode, Convert.ToInt32(_passwordSecured));
-                        //SaveFileDialog
-                        SaveImage(bitmapWEncodedText);
+                        //return value of Encode method should be Bitmap
+                        Console.WriteLine("TEXT LENGTH: " + _textToEncode.Length);
+                        Console.WriteLine(_textToEncode);
+                        if (_textToEncode.Length > 255)
+                        {
+                            MessageBox.Show("Text limit is 255 characters!");
+                        }
+                        else
+                        {
+                            Console.WriteLine(_textToEncode);
+                            Bitmap bitmapWEncodedText = stg.HideText(bitmapWOEncodedText, _textToEncode, Convert.ToInt32(_passwordSecured));
+                            //SaveFileDialog
+                            SaveImage(bitmapWEncodedText);
+                        }
                     }
                 }
                 else
@@ -145,36 +174,39 @@ namespace Steganography
             } else
             {
                 Steganography stg = new Steganography();
-                Bitmap bitmapToDecode = new Bitmap(_filePath);
-
-                //Decode
-                string hiddenText = stg.Decode(bitmapToDecode);
-                if(hiddenText == string.Empty)
+                using (Bitmap bitmapToDecode = new Bitmap(_filePath))
                 {
-                    MessageBox.Show("Selected image does not contain hidden text!", "Error");
-                } else
-                {
-                    tbxHiddenMessage.Text = "";
-                    if(hiddenText.Length > 200)
+                    //Decode
+                    string hiddenText = stg.UnhideText(bitmapToDecode);
+                    if (hiddenText == string.Empty)
                     {
-                        tbxHiddenMessage.ScrollBars = ScrollBars.Vertical;
-                    } else
-                    {
-                        tbxHiddenMessage.ScrollBars = ScrollBars.None;
+                        MessageBox.Show("Selected image does not contain hidden text!", "Error");
                     }
-                    tbxHiddenMessage.Text = hiddenText;
+                    else
+                    {
+                        tbxHiddenMessage.Text = "";
+                        if (hiddenText.Length > 200)
+                        {
+                            tbxHiddenMessage.ScrollBars = ScrollBars.Vertical;
+                        }
+                        else
+                        {
+                            tbxHiddenMessage.ScrollBars = ScrollBars.None;
+                        }
+                        tbxHiddenMessage.Text = hiddenText;
+                    }
                 }
             }
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void RadioBtnPasswordSecuredCheckedChanged(object sender, EventArgs e)
         {
             _passwordSecured = radioBtnPasswordSecured.Checked;
             txtFieldPassword.Enabled = true;
             txtFieldPassword.Text = "";
         }
 
-        private void radioBtnPasswordSecured_Click(object sender, EventArgs e)
+        private void RadioBtnPasswordSecuredClick(object sender, EventArgs e)
         {
             if(radioBtnPasswordSecured.Checked && !_passwordSecured)
             {

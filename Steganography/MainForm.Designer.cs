@@ -291,8 +291,8 @@
             this.radioBtnPasswordSecured.TabStop = true;
             this.radioBtnPasswordSecured.Text = "Password secured";
             this.radioBtnPasswordSecured.UseVisualStyleBackColor = false;
-            this.radioBtnPasswordSecured.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            this.radioBtnPasswordSecured.Click += new System.EventHandler(this.radioBtnPasswordSecured_Click);
+            this.radioBtnPasswordSecured.CheckedChanged += new System.EventHandler(this.RadioBtnPasswordSecuredCheckedChanged);
+            this.radioBtnPasswordSecured.Click += new System.EventHandler(this.RadioBtnPasswordSecuredClick);
             // 
             // txtFieldPassword
             // 
