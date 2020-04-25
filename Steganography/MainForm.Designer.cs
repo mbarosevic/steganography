@@ -44,6 +44,8 @@
             this.btnBrowse = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnEncode = new MaterialSkin.Controls.MaterialFlatButton();
             this.metroSetLabel3 = new MetroSet_UI.Controls.MetroSetLabel();
+            this.radioBtnPasswordSecured = new System.Windows.Forms.RadioButton();
+            this.txtFieldPassword = new MaterialSkin.Controls.MaterialSingleLineTextField();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             this.pbxImage.Image = ((System.Drawing.Image)(resources.GetObject("pbxImage.Image")));
             this.pbxImage.Location = new System.Drawing.Point(378, 79);
             this.pbxImage.Name = "pbxImage";
-            this.pbxImage.Size = new System.Drawing.Size(504, 464);
+            this.pbxImage.Size = new System.Drawing.Size(539, 495);
             this.pbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImage.TabIndex = 0;
             this.pbxImage.TabStop = false;
@@ -63,7 +65,7 @@
             this.lblEncodeFilePath.AutoSize = true;
             this.lblEncodeFilePath.BackColor = System.Drawing.Color.Transparent;
             this.lblEncodeFilePath.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEncodeFilePath.Location = new System.Drawing.Point(9, 191);
+            this.lblEncodeFilePath.Location = new System.Drawing.Point(9, 189);
             this.lblEncodeFilePath.Name = "lblEncodeFilePath";
             this.lblEncodeFilePath.Size = new System.Drawing.Size(86, 13);
             this.lblEncodeFilePath.TabIndex = 1;
@@ -74,10 +76,10 @@
             this.tbxTextToEncode.BackColor = System.Drawing.SystemColors.Window;
             this.tbxTextToEncode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxTextToEncode.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tbxTextToEncode.Location = new System.Drawing.Point(12, 218);
+            this.tbxTextToEncode.Location = new System.Drawing.Point(12, 255);
             this.tbxTextToEncode.Multiline = true;
             this.tbxTextToEncode.Name = "tbxTextToEncode";
-            this.tbxTextToEncode.Size = new System.Drawing.Size(344, 91);
+            this.tbxTextToEncode.Size = new System.Drawing.Size(344, 75);
             this.tbxTextToEncode.TabIndex = 4;
             this.tbxTextToEncode.Text = "Enter your text here...";
             this.tbxTextToEncode.Click += new System.EventHandler(this.TextBoxEncodeClicked);
@@ -89,7 +91,7 @@
             this.metroSetControlBox1.CloseHoverForeColor = System.Drawing.Color.White;
             this.metroSetControlBox1.CloseNormalForeColor = System.Drawing.Color.Gray;
             this.metroSetControlBox1.DisabledForeColor = System.Drawing.Color.DimGray;
-            this.metroSetControlBox1.Location = new System.Drawing.Point(782, 0);
+            this.metroSetControlBox1.Location = new System.Drawing.Point(823, 0);
             this.metroSetControlBox1.MaximizeBox = true;
             this.metroSetControlBox1.MaximizeHoverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.metroSetControlBox1.MaximizeHoverForeColor = System.Drawing.Color.Gray;
@@ -123,7 +125,7 @@
             this.tbxHiddenMessage.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tbxHiddenMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbxHiddenMessage.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tbxHiddenMessage.Location = new System.Drawing.Point(12, 458);
+            this.tbxHiddenMessage.Location = new System.Drawing.Point(12, 489);
             this.tbxHiddenMessage.Multiline = true;
             this.tbxHiddenMessage.Name = "tbxHiddenMessage";
             this.tbxHiddenMessage.ReadOnly = true;
@@ -277,13 +279,51 @@
             this.metroSetLabel3.ThemeAuthor = "Narwin";
             this.metroSetLabel3.ThemeName = "MetroLite";
             // 
+            // radioBtnPasswordSecured
+            // 
+            this.radioBtnPasswordSecured.AutoSize = true;
+            this.radioBtnPasswordSecured.BackColor = System.Drawing.Color.Transparent;
+            this.radioBtnPasswordSecured.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioBtnPasswordSecured.Location = new System.Drawing.Point(12, 216);
+            this.radioBtnPasswordSecured.Name = "radioBtnPasswordSecured";
+            this.radioBtnPasswordSecured.Size = new System.Drawing.Size(138, 20);
+            this.radioBtnPasswordSecured.TabIndex = 18;
+            this.radioBtnPasswordSecured.TabStop = true;
+            this.radioBtnPasswordSecured.Text = "Password secured";
+            this.radioBtnPasswordSecured.UseVisualStyleBackColor = false;
+            this.radioBtnPasswordSecured.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioBtnPasswordSecured.Click += new System.EventHandler(this.radioBtnPasswordSecured_Click);
+            // 
+            // txtFieldPassword
+            // 
+            this.txtFieldPassword.BackColor = System.Drawing.SystemColors.Control;
+            this.txtFieldPassword.Depth = 0;
+            this.txtFieldPassword.Enabled = false;
+            this.txtFieldPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldPassword.Hint = "";
+            this.txtFieldPassword.Location = new System.Drawing.Point(156, 216);
+            this.txtFieldPassword.MaxLength = 32767;
+            this.txtFieldPassword.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtFieldPassword.Name = "txtFieldPassword";
+            this.txtFieldPassword.PasswordChar = '*';
+            this.txtFieldPassword.SelectedText = "";
+            this.txtFieldPassword.SelectionLength = 0;
+            this.txtFieldPassword.SelectionStart = 0;
+            this.txtFieldPassword.Size = new System.Drawing.Size(201, 25);
+            this.txtFieldPassword.TabIndex = 19;
+            this.txtFieldPassword.TabStop = false;
+            this.txtFieldPassword.Text = "Password";
+            this.txtFieldPassword.UseSystemPasswordChar = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(891, 554);
+            this.ClientSize = new System.Drawing.Size(932, 589);
+            this.Controls.Add(this.txtFieldPassword);
+            this.Controls.Add(this.radioBtnPasswordSecured);
             this.Controls.Add(this.metroSetLabel3);
             this.Controls.Add(this.btnEncode);
             this.Controls.Add(this.btnBrowse);
@@ -326,6 +366,8 @@
         private MaterialSkin.Controls.MaterialFlatButton btnBrowse;
         private MaterialSkin.Controls.MaterialFlatButton btnEncode;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel3;
+        private System.Windows.Forms.RadioButton radioBtnPasswordSecured;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtFieldPassword;
     }
 }
 

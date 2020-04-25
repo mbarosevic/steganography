@@ -15,8 +15,9 @@ namespace Steganography
         /// </summary>
         /// <param name="bitmap"></param>
         /// <param name="textToEncode"></param>
+        /// <param name="passwordSecured">0 if the text is not password secured, othervise it is 1</param>
         /// <returns>bitmap image with hidden text</returns>
-        public Bitmap Encode(Bitmap bitmap, string textToEncode)
+        public Bitmap Encode(Bitmap bitmap, string textToEncode, int passwordSecured)
         {
             Console.WriteLine(textToEncode);
             Bitmap nonIndexedBitmap = CreateNonIndexedBitmap(bitmap);
@@ -47,7 +48,7 @@ namespace Steganography
                         //G pixel value is 0 if the text is not password secured
                         //G pixel value is 1 if the text is password secured
                         //B pixel value is the length of the text to hide
-                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, 0, textToEncode.Length));
+                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, passwordSecured, textToEncode.Length));
                     }
                 }
             }

@@ -16,7 +16,7 @@ namespace Steganography
         private string _textToEncode;
         private double _textSizeToFit;
         private Image _loadedImage;
-
+        private bool _passwordSecured = false;
         public string OpenImage()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -120,7 +120,7 @@ namespace Steganography
                         MessageBox.Show("Text limit is 255 characters!");
                     } else
                     {
-                        Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode);
+                        Bitmap bitmapWEncodedText = stg.Encode(bitmapWOEncodedText, _textToEncode, Convert.ToInt32(_passwordSecured));
                         //SaveFileDialog
                         SaveImage(bitmapWEncodedText);
                     }
@@ -164,6 +164,27 @@ namespace Steganography
                     }
                     tbxHiddenMessage.Text = hiddenText;
                 }
+            }
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            _passwordSecured = radioBtnPasswordSecured.Checked;
+            txtFieldPassword.Enabled = true;
+            txtFieldPassword.Text = "";
+        }
+
+        private void radioBtnPasswordSecured_Click(object sender, EventArgs e)
+        {
+            if(radioBtnPasswordSecured.Checked && !_passwordSecured)
+            {
+                radioBtnPasswordSecured.Checked = false;
+                txtFieldPassword.Enabled = false;
+                txtFieldPassword.Text = "Password";
+            } else
+            {
+                radioBtnPasswordSecured.Checked = true;
+                _passwordSecured = false;
             }
         }
     }
