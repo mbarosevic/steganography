@@ -111,9 +111,9 @@ namespace Steganography
             _textToEncode = tbxTextToEncode.Text;
             if (radioBtnPasswordSecured.Checked)
             {
-                if(txtFieldPassword.Text != "" || txtFieldPassword.Text.Length > 3)
+                if(txtFieldPasswordEncrypt.Text != "" || txtFieldPasswordEncrypt.Text.Length > 3)
                 {
-                    string password = txtFieldPassword.Text;
+                    string password = txtFieldPasswordEncrypt.Text;
 
                     using (SHA256 sha256 = SHA256Managed.Create())
                     {
@@ -148,7 +148,7 @@ namespace Steganography
                         else
                         {
                             Console.WriteLine(_textToEncode);
-                            Bitmap bitmapWEncodedText = stg.HideText(bitmapWOEncodedText, _textToEncode, Convert.ToInt32(_passwordSecured));
+                            Bitmap bitmapWEncodedText = stg.HideText(bitmapWOEncodedText, _textToEncode, Convert.ToInt32(radioBtnPasswordSecured.Checked));
                             //SaveFileDialog
                             SaveImage(bitmapWEncodedText);
                         }
@@ -177,8 +177,23 @@ namespace Steganography
                 using (Bitmap bitmapToDecode = new Bitmap(_filePath))
                 {
                     //Decode
-                    string hiddenText = stg.UnhideText(bitmapToDecode);
-                    if (hiddenText == string.Empty)
+                    string hiddenText = "";
+                    //Check if text is password secured
+                    if (stg.CheckIfTextIsPasswordSecured(bitmapToDecode) && txtFieldPasswordDecrypt.Text == "")
+                    {
+                        MessageBox.Show("Hidden text is password secured. Please provide a password!", "Error");
+                    } else if (stg.CheckIfTextIsPasswordSecured(bitmapToDecode) && txtFieldPasswordDecrypt.Text != "")
+                    {
+                        //DECODE
+                        hiddenText = stg.UnhideText(bitmapToDecode);
+                        //AES DECODE hiddenText
+                    }
+                    else
+                    {
+                        hiddenText = stg.UnhideText(bitmapToDecode);
+                    }
+
+                    if (hiddenText == string.Empty && !stg.CheckIfTextIsPasswordSecured(bitmapToDecode))
                     {
                         MessageBox.Show("Selected image does not contain hidden text!", "Error");
                     }
@@ -202,8 +217,8 @@ namespace Steganography
         private void RadioBtnPasswordSecuredCheckedChanged(object sender, EventArgs e)
         {
             _passwordSecured = radioBtnPasswordSecured.Checked;
-            txtFieldPassword.Enabled = true;
-            txtFieldPassword.Text = "";
+            txtFieldPasswordEncrypt.Enabled = true;
+            txtFieldPasswordEncrypt.Text = "";
         }
 
         private void RadioBtnPasswordSecuredClick(object sender, EventArgs e)
@@ -211,8 +226,8 @@ namespace Steganography
             if(radioBtnPasswordSecured.Checked && !_passwordSecured)
             {
                 radioBtnPasswordSecured.Checked = false;
-                txtFieldPassword.Enabled = false;
-                txtFieldPassword.Text = "Password";
+                txtFieldPasswordEncrypt.Enabled = false;
+                txtFieldPasswordEncrypt.Text = "Password";
             } else
             {
                 radioBtnPasswordSecured.Checked = true;

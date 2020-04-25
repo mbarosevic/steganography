@@ -77,8 +77,13 @@ namespace Steganography
         {
             Color gPixel = bitmap.GetPixel(bitmap.Width - 1, bitmap.Height - 1);
 
+            Console.WriteLine(gPixel);
+
+
             bool secured = gPixel.G == 1 ? true : false;
 
+
+            Console.WriteLine(secured);
             return secured;
         }
 

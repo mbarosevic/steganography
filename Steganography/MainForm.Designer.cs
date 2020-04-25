@@ -45,7 +45,9 @@
             this.btnEncode = new MaterialSkin.Controls.MaterialFlatButton();
             this.metroSetLabel3 = new MetroSet_UI.Controls.MetroSetLabel();
             this.radioBtnPasswordSecured = new System.Windows.Forms.RadioButton();
-            this.txtFieldPassword = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtFieldPasswordEncrypt = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.txtFieldPasswordDecrypt = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +116,7 @@
             this.lblDecodeFilePath.AutoSize = true;
             this.lblDecodeFilePath.BackColor = System.Drawing.Color.Transparent;
             this.lblDecodeFilePath.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDecodeFilePath.Location = new System.Drawing.Point(9, 433);
+            this.lblDecodeFilePath.Location = new System.Drawing.Point(9, 434);
             this.lblDecodeFilePath.Name = "lblDecodeFilePath";
             this.lblDecodeFilePath.Size = new System.Drawing.Size(86, 13);
             this.lblDecodeFilePath.TabIndex = 1;
@@ -294,26 +296,57 @@
             this.radioBtnPasswordSecured.CheckedChanged += new System.EventHandler(this.RadioBtnPasswordSecuredCheckedChanged);
             this.radioBtnPasswordSecured.Click += new System.EventHandler(this.RadioBtnPasswordSecuredClick);
             // 
-            // txtFieldPassword
+            // txtFieldPasswordEncrypt
             // 
-            this.txtFieldPassword.BackColor = System.Drawing.SystemColors.Control;
-            this.txtFieldPassword.Depth = 0;
-            this.txtFieldPassword.Enabled = false;
-            this.txtFieldPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFieldPassword.Hint = "";
-            this.txtFieldPassword.Location = new System.Drawing.Point(156, 216);
-            this.txtFieldPassword.MaxLength = 32767;
-            this.txtFieldPassword.MouseState = MaterialSkin.MouseState.HOVER;
-            this.txtFieldPassword.Name = "txtFieldPassword";
-            this.txtFieldPassword.PasswordChar = '*';
-            this.txtFieldPassword.SelectedText = "";
-            this.txtFieldPassword.SelectionLength = 0;
-            this.txtFieldPassword.SelectionStart = 0;
-            this.txtFieldPassword.Size = new System.Drawing.Size(201, 25);
-            this.txtFieldPassword.TabIndex = 19;
-            this.txtFieldPassword.TabStop = false;
-            this.txtFieldPassword.Text = "Password";
-            this.txtFieldPassword.UseSystemPasswordChar = false;
+            this.txtFieldPasswordEncrypt.BackColor = System.Drawing.SystemColors.Control;
+            this.txtFieldPasswordEncrypt.Depth = 0;
+            this.txtFieldPasswordEncrypt.Enabled = false;
+            this.txtFieldPasswordEncrypt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldPasswordEncrypt.Hint = "";
+            this.txtFieldPasswordEncrypt.Location = new System.Drawing.Point(156, 216);
+            this.txtFieldPasswordEncrypt.MaxLength = 32767;
+            this.txtFieldPasswordEncrypt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtFieldPasswordEncrypt.Name = "txtFieldPasswordEncrypt";
+            this.txtFieldPasswordEncrypt.PasswordChar = '*';
+            this.txtFieldPasswordEncrypt.SelectedText = "";
+            this.txtFieldPasswordEncrypt.SelectionLength = 0;
+            this.txtFieldPasswordEncrypt.SelectionStart = 0;
+            this.txtFieldPasswordEncrypt.Size = new System.Drawing.Size(201, 25);
+            this.txtFieldPasswordEncrypt.TabIndex = 19;
+            this.txtFieldPasswordEncrypt.TabStop = false;
+            this.txtFieldPasswordEncrypt.Text = "Password";
+            this.txtFieldPasswordEncrypt.UseSystemPasswordChar = false;
+            // 
+            // txtFieldPasswordDecrypt
+            // 
+            this.txtFieldPasswordDecrypt.BackColor = System.Drawing.SystemColors.Control;
+            this.txtFieldPasswordDecrypt.Depth = 0;
+            this.txtFieldPasswordDecrypt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFieldPasswordDecrypt.Hint = "";
+            this.txtFieldPasswordDecrypt.Location = new System.Drawing.Point(156, 458);
+            this.txtFieldPasswordDecrypt.MaxLength = 32767;
+            this.txtFieldPasswordDecrypt.MouseState = MaterialSkin.MouseState.HOVER;
+            this.txtFieldPasswordDecrypt.Name = "txtFieldPasswordDecrypt";
+            this.txtFieldPasswordDecrypt.PasswordChar = '*';
+            this.txtFieldPasswordDecrypt.SelectedText = "";
+            this.txtFieldPasswordDecrypt.SelectionLength = 0;
+            this.txtFieldPasswordDecrypt.SelectionStart = 0;
+            this.txtFieldPasswordDecrypt.Size = new System.Drawing.Size(201, 25);
+            this.txtFieldPasswordDecrypt.TabIndex = 20;
+            this.txtFieldPasswordDecrypt.TabStop = false;
+            this.txtFieldPasswordDecrypt.Text = "Password";
+            this.txtFieldPasswordDecrypt.UseSystemPasswordChar = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 458);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "Password:";
             // 
             // MainForm
             // 
@@ -322,7 +355,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(932, 589);
-            this.Controls.Add(this.txtFieldPassword);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtFieldPasswordDecrypt);
+            this.Controls.Add(this.txtFieldPasswordEncrypt);
             this.Controls.Add(this.radioBtnPasswordSecured);
             this.Controls.Add(this.metroSetLabel3);
             this.Controls.Add(this.btnEncode);
@@ -367,7 +402,9 @@
         private MaterialSkin.Controls.MaterialFlatButton btnEncode;
         private MetroSet_UI.Controls.MetroSetLabel metroSetLabel3;
         private System.Windows.Forms.RadioButton radioBtnPasswordSecured;
-        private MaterialSkin.Controls.MaterialSingleLineTextField txtFieldPassword;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtFieldPasswordEncrypt;
+        private MaterialSkin.Controls.MaterialSingleLineTextField txtFieldPasswordDecrypt;
+        private System.Windows.Forms.Label label1;
     }
 }
 
