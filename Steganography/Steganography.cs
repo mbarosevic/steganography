@@ -44,7 +44,10 @@ namespace Steganography
                     }
                     if (i == nonIndexedBitmap.Width - 1 && j == nonIndexedBitmap.Height - 1)
                     {
-                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, pixel.G, textToEncode.Length));
+                        //G pixel value is 0 if the text is not password secured
+                        //G pixel value is 1 if the text is password secured
+                        //B pixel value is the length of the text to hide
+                        nonIndexedBitmap.SetPixel(i, j, Color.FromArgb(pixel.R, 0, textToEncode.Length));
                     }
                 }
             }
@@ -69,6 +72,15 @@ namespace Steganography
             return nonIndexedBitmap;
         }
 
+        public bool CheckIfTextIsPasswordSecured(Bitmap bitmap)
+        {
+            Color gPixel = bitmap.GetPixel(bitmap.Width - 1, bitmap.Height - 1);
+
+            bool secured = gPixel.G == 1 ? true : false;
+
+            return secured;
+        }
+
         /// <summary>
         /// Decode method that unhide hidden text in given bitmap image
         /// </summary>
@@ -79,6 +91,8 @@ namespace Steganography
             string hiddenMessage = "";
             Color lastPixel = bitmap.GetPixel(bitmap.Width - 1, bitmap.Height - 1);
             int msgLength = lastPixel.B;
+            int encryptedWithPassword = lastPixel.G;
+            Console.WriteLine(encryptedWithPassword);
             for (int i = 0; i < bitmap.Width; i++)
             {
                 for (int j = 0; j < bitmap.Height; j++)
