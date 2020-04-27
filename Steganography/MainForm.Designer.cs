@@ -334,7 +334,6 @@
             this.txtFieldPasswordDecrypt.Size = new System.Drawing.Size(201, 25);
             this.txtFieldPasswordDecrypt.TabIndex = 20;
             this.txtFieldPasswordDecrypt.TabStop = false;
-            this.txtFieldPasswordDecrypt.Text = "Password";
             this.txtFieldPasswordDecrypt.UseSystemPasswordChar = false;
             // 
             // label1

@@ -19,6 +19,8 @@ namespace Steganography
         private double _textSizeToFit;
         private Image _loadedImage;
         private bool _passwordSecured = false;
+        private byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+
         public string OpenImage()
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -115,15 +117,11 @@ namespace Steganography
                 {
                     string password = txtFieldPasswordEncrypt.Text;
 
-                    using (SHA256 sha256 = SHA256Managed.Create())
-                    {
-                        byte[] key = sha256.ComputeHash(Encoding.ASCII.GetBytes(password));
-                        byte[] iv = new byte[16] { 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0 };
+                    AesManaged aes = new AesManaged();
+                    _textToEncode = aes.Encrypt(_textToEncode, GenerateKey(password), iv);
 
-                        AesManaged aes = new AesManaged();
-                        _textToEncode = aes.Encrypt(_textToEncode, key, iv);
-                    }
-                    Console.WriteLine(_textToEncode);
+                    // Hidden text
+                    //Console.WriteLine(_textToEncode);
                 }
                 else
                 {
@@ -232,6 +230,15 @@ namespace Steganography
             {
                 radioBtnPasswordSecured.Checked = true;
                 _passwordSecured = false;
+            }
+        }
+
+        private byte[] GenerateKey(string password)
+        {
+            using (SHA256 mySHA256 = SHA256.Create())
+            {
+                byte[] key = mySHA256.ComputeHash(Encoding.ASCII.GetBytes(password));
+                return key;
             }
         }
     }
