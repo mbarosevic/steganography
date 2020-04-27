@@ -182,12 +182,23 @@ namespace Steganography
                         MessageBox.Show("Hidden text is password secured. Please provide a password!", "Error");
                     } else if (stg.CheckIfTextIsPasswordSecured(bitmapToDecode) && txtFieldPasswordDecrypt.Text != "")
                     {
-                        //DECODE
-                        hiddenText = stg.UnhideText(bitmapToDecode);
-                        //AES DECODE hiddenText
+                        string password = txtFieldPasswordDecrypt.Text;
+                        string encryptedHiddenText = stg.UnhideText(bitmapToDecode);
+                        AesManaged aes = new AesManaged();
+
+                        string plainText = aes.Decrypt(encryptedHiddenText, GenerateKey(password), iv);
+                        if(plainText == null)
+                        {
+                            MessageBox.Show("Wrong password, try again!", "Error");
+                            txtFieldPasswordDecrypt.Text = "";
+                        } else
+                        {
+                            hiddenText = plainText;
+                        }
                     }
                     else
                     {
+                        Console.WriteLine("tu Sam");
                         hiddenText = stg.UnhideText(bitmapToDecode);
                     }
 
@@ -198,7 +209,7 @@ namespace Steganography
                     else
                     {
                         tbxHiddenMessage.Text = "";
-                        if (hiddenText.Length > 200)
+                        if (hiddenText.Length > 200 && hiddenText != null)
                         {
                             tbxHiddenMessage.ScrollBars = ScrollBars.Vertical;
                         }

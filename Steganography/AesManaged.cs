@@ -49,7 +49,7 @@ namespace Steganography
             }
         }
 
-        public string DecryptString(string cipherText, byte[] key, byte[] iv)
+        public string Decrypt(string cipherText, byte[] key, byte[] iv)
         {
             using (Aes encryptor = Aes.Create())
             {
@@ -81,11 +81,22 @@ namespace Steganography
 
                     // Convert the decrypted byte array to string
                     plainText = Encoding.ASCII.GetString(plainBytes, 0, plainBytes.Length);
+                }catch(Exception ex)
+                {
+                    //Console.WriteLine(ex);
+                    plainText = null;
                 }
                 finally
                 {
-                    memoryStream.Close();
-                    cryptoStream.Close();
+                    try
+                    {
+                        memoryStream.Close();
+                        cryptoStream.Close();
+                    } catch (Exception ex)
+                    {
+                        plainText = null;
+                        //Console.WriteLine(ex);
+                    }
                 }
 
                 return plainText;
