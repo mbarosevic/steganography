@@ -62,44 +62,47 @@ namespace Steganography
 
                 MemoryStream memoryStream = new MemoryStream();
                 ICryptoTransform aesDecryptor = encryptor.CreateDecryptor();
-                CryptoStream cryptoStream = new CryptoStream(memoryStream, aesDecryptor, CryptoStreamMode.Write);
-
-                string plainText = String.Empty;
-                try
+                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, aesDecryptor, CryptoStreamMode.Write))
                 {
-                    // Convert the ciphertext string into a byte array
-                    byte[] cipherBytes = Convert.FromBase64String(cipherText);
-
-                    // Decrypt the input ciphertext string
-                    cryptoStream.Write(cipherBytes, 0, cipherBytes.Length);
-
-                    // Complete the decryption process
-                    cryptoStream.FlushFinalBlock();
-
-                    // Convert the decrypted data from a MemoryStream to a byte array
-                    byte[] plainBytes = memoryStream.ToArray();
-
-                    // Convert the decrypted byte array to string
-                    plainText = Encoding.ASCII.GetString(plainBytes, 0, plainBytes.Length);
-                }catch(Exception ex)
-                {
-                    //Console.WriteLine(ex);
-                    plainText = null;
-                }
-                finally
-                {
+                    string plainText = String.Empty;
                     try
                     {
-                        memoryStream.Close();
-                        cryptoStream.Close();
-                    } catch (Exception ex)
-                    {
-                        plainText = null;
-                        //Console.WriteLine(ex);
-                    }
-                }
+                        // Convert the ciphertext string into a byte array
+                        byte[] cipherBytes = Convert.FromBase64String(cipherText);
 
-                return plainText;
+                        // Decrypt the input ciphertext string
+                        cryptoStream.Write(cipherBytes, 0, cipherBytes.Length);
+
+                        // Complete the decryption process
+                        cryptoStream.FlushFinalBlock();
+
+                        // Convert the decrypted data from a MemoryStream to a byte array
+                        byte[] plainBytes = memoryStream.ToArray();
+
+                        // Convert the decrypted byte array to string
+                        plainText = Encoding.ASCII.GetString(plainBytes, 0, plainBytes.Length);
+                    }
+                    catch (Exception ex)
+                    {
+                        //Console.WriteLine(ex);
+                        plainText = null;
+                    }
+                    finally
+                    {
+                        try
+                        {
+                            memoryStream.Close();
+                            cryptoStream.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            plainText = null;
+                            //Console.WriteLine(ex);
+                        }
+                    }
+
+                    return plainText;
+                }
             }
         }
     }
