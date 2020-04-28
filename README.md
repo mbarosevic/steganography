@@ -28,9 +28,24 @@ Start the project and run it.
 
 One of the most widely used steganography techniques is the least significant bit technique, known commonly as LSB. This technique changes the last few bits in a byte to encode a message, which is especially useful in something like an image, where the red, green, and blue values of each pixel are represented by eight bits (one byte) ranging from 0 to 255 in decimal or 00000000 to 11111111 in binary.
 
+The diagram shows two 4-pixel images in both color and binary values. Each block of binary represents the value of the corresponding pixel.
 ![LSBTechnique](https://img.wonderhowto.com/img/original/02/61/63645877844452/0/636458778444520261.jpg)
 
 
+As changing the last two bits in a completely red pixel from 11111111 to 11111101 only changes the red value from 255 to 253, which to the naked eye creates a nearly imperceptible change in color but still allows us to encode data inside of the picture.
+
+For this example I used a simple white image to show how the LSB techinque change the pixel value.
+
+Yellow pixels are the ones where the data is encoded.
+
+Original image
+![OriginalImageWithoutEncodedText](https://imgur.com/TVyRiCb)
+
+Image with hidden text
+![ImageWithHiddenText](https://imgur.com/lj5I0Zq)
+
+Magnified first column of pixels of the image with hidden text
+![MagnifiedImage](https://imgur.com/8C6ImEw)
 ```
 Give the example
 ```
