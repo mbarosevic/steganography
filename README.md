@@ -1,6 +1,6 @@
 # Steganography
 
-The art of hiding information in plain sight. Unlike encryption, where it's obvious that a message is being hidden, steganography hides data in plain view, inside a file such as a picture. As far as images are concerned, to anyone who isn't aware that it contains hidden data, it looks like just a normal, innocent picture. :innocent:
+The art of hiding information in plain sight. Unlike encryption, where it's obvious that a message is being hidden, steganography hides data in plain view, inside a file such as a picture. As far as images are concerned, to anyone who isn't aware that it contains hidden data, it looks like just a normal, innocent picture.
  
 ## Getting Started
 
@@ -16,7 +16,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 * Clone this repo to your local machine using https://github.com/mbarosevic/steganography.git
 
-Start the project and run it. :anguished:
+Start the project and run it.
 
 ## Demo
 
@@ -37,10 +37,6 @@ End with an example of getting some data out of the system or using it for a lit
 * [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
 * [Maven](https://maven.apache.org/) - Dependency Management
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Authors
-
-* ** Matija Barošević**
 
 ## Acknowledgments
 
