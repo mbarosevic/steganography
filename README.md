@@ -42,10 +42,10 @@ Original image
 ![OriginalImageWithoutEncodedText](https://imgur.com/TVyRiCb.jpg)
 
 Image with hidden text
-![ImageWithHiddenText](https://imgur.com/lj5I0Zq)
+![ImageWithHiddenText](https://imgur.com/lj5I0Zq.jpg)
 
 Magnified first column of pixels of the image with hidden text
-![MagnifiedImage](https://imgur.com/8C6ImEw)
+![MagnifiedImage](https://imgur.com/8C6ImEw.jpg)
 ```
 Give the example
 ```
