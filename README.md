@@ -37,12 +37,7 @@ As changing the last two bits in a completely red pixel from 11111111 to 1111110
 For this example I used a simple white image to show how the LSB techinque change the pixel value.
 
 Yellow pixels are the ones where the data is encoded.
-
-Original image
-
-Image with hidden text
-
-Magnified first column of pixels of the image with hidden text
+![Recordit GIF](https://recordit.co/6BG9Ff4dxj)
 ```
 Give the example
 ```
