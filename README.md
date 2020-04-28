@@ -4,11 +4,17 @@ The art of hiding information in plain sight. Unlike encryption, where it's obvi
  
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes, but also with short description of the implementation.
 
 ### Prerequisites
 
 * [Microsoft Visual Studio](https://visualstudio.microsoft.com/) - Full-featured IDE used to code, debug, test and deploy.
+
+### Technologies
+
+* .NET Framework 4.7.2
+* MetroSetUI
+* MaterialSkin
 
 ## Installation
 
@@ -19,6 +25,11 @@ These instructions will get you a copy of the project up and running on your loc
 Start the project and run it.
 
 ## Demo
+
+One of the most widely used steganography techniques is the least significant bit technique, known commonly as LSB. This technique changes the last few bits in a byte to encode a message, which is especially useful in something like an image, where the red, green, and blue values of each pixel are represented by eight bits (one byte) ranging from 0 to 255 in decimal or 00000000 to 11111111 in binary.
+
+![LSBTechnique](https://img.wonderhowto.com/img/original/02/61/63645877844452/0/636458778444520261.jpg)
+
 
 ```
 Give the example
@@ -34,8 +45,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [Microsoft Visual Studio](https://visualstudio.microsoft.com/) - Full-featured IDE used to code, debug, test and deploy.
+* [MetroSet-UI](https://github.com/N-a-r-w-i-n/MetroSet-UI) - Windows Forms Metro Skin Style
 * [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Acknowledgments
